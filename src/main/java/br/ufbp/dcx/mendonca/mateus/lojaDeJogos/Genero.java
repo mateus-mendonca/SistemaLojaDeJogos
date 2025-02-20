@@ -1,5 +1,5 @@
 package br.ufbp.dcx.mendonca.mateus.lojaDeJogos;
 
 public enum Genero {
-    AÇÃO, AVENTURA, MISTÉRIO, TERROR, SUSPENSE, TIRO;
+    ACAO_AVENTURA, ACAO, AVENTURA, MISTERIO, TERROR, SUSPENSE, TIRO;
 }
