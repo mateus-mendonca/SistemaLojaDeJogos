@@ -1,17 +1,21 @@
 package br.ufbp.dcx.mendonca.mateus.lojaDeJogos;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class Jogo {
+public class Jogo implements Serializable {
     private String titulo;
     private String descricao;
+    private String codigo;
     private Genero genero;
     private int preco;
     private int quantidade;
 
-    public Jogo(String titulo, String descricao, Genero genero, int preco, int quantidade) {
+
+    public Jogo(String titulo, String descricao, String codigo, Genero genero, int preco, int quantidade) {
         this.titulo = titulo;
         this.descricao = descricao;
+        this.codigo = codigo;
         this.genero = genero;
         this.preco = preco;
         this.quantidade = quantidade;
@@ -25,6 +29,9 @@ public class Jogo {
         return descricao;
     }
 
+    public String getCodigo() {
+        return codigo;
+    }
     public Genero getGenero() {
         return genero;
     }
@@ -45,6 +52,9 @@ public class Jogo {
         this.descricao = descricao;
     }
 
+    public void setCodigo(String codigo) {
+        this.codigo = codigo;
+    }
     public void setGenero(Genero genero) {
         this.genero = genero;
     }

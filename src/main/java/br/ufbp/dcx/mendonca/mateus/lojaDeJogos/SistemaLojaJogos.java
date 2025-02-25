@@ -13,11 +13,11 @@ public class SistemaLojaJogos implements LojaJogos {
         jogos = new ArrayList<Jogo>();
     }
 
-    public void cadastraJogo(String titulo, String descricao, Genero genero, int preco, int quantidade) throws JogoJaExisteException {
-        if (jogos.contains(titulo)) {
+    public void cadastraJogo(String titulo, String descricao, String codigo, Genero genero, int preco, int quantidade) throws JogoJaExisteException {
+        if (jogos.contains(codigo)) {
             throw new JogoJaExisteException("Jogo já cadastrado.");
         } else {
-            Jogo jogo = new Jogo(titulo, descricao, genero, preco, quantidade);
+            Jogo jogo = new Jogo(titulo, descricao, codigo, genero, preco, quantidade);
             jogos.add(jogo);
         }
     }
@@ -46,10 +46,10 @@ public class SistemaLojaJogos implements LojaJogos {
         return jogoPeloGenero;
     }
 
-    public void removeJogo(String titulo) throws JogoInexistenteException {
+    public void removeJogo(String codigo) throws JogoInexistenteException {
         Collection<Jogo> jogoEncontrado = new ArrayList();
         for (Jogo j : jogos) {
-            if (j.getTitulo().equals(titulo)) {
+            if (j.getTitulo().equals(codigo)) {
                 jogoEncontrado.remove(jogos);
             } else {
                 throw new JogoInexistenteException("Jogo não encontrado.");
@@ -57,11 +57,29 @@ public class SistemaLojaJogos implements LojaJogos {
         }
     }
 
-    public Genero consultaGeneroDoJogo(String titulo) throws JogoInexistenteException{
-        return null;
+    public Genero consultaGeneroDoJogo(String codigo) throws JogoInexistenteException{
+        if (!this.jogos.contains(codigo)) {
+            throw new JogoInexistenteException("Jogo não encontrado.");
+        } else {
+            Genero generoEncontrado = null;
+            for (Jogo j : this.jogos) {
+                generoEncontrado = j.getGenero();
+            }
+            return generoEncontrado;
+        }
     }
 
-    public void alteraPrecoDoJogo(int preco, int novoPreco) {
+    public void alteraPrecoDoJogo(String codigo, int novoPreco) throws JogoInexistenteException {
+        if (!this.jogos.contains(codigo)) {
+            throw new JogoInexistenteException("Jogo não encontrado.");
+        } else {
+            for (Jogo j : this.jogos) {
+                j.setPreco(novoPreco);
+            }
+        }
+    }
 
+    public int consultaQuantidadeEmEstoque(String codigo) throws JogoInexistenteException {
+        return 0;
     }
 }
