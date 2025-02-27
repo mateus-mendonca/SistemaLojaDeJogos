@@ -32,6 +32,7 @@ public class Jogo implements Serializable {
     public String getCodigo() {
         return codigo;
     }
+
     public Genero getGenero() {
         return genero;
     }
@@ -55,6 +56,7 @@ public class Jogo implements Serializable {
     public void setCodigo(String codigo) {
         this.codigo = codigo;
     }
+
     public void setGenero(Genero genero) {
         this.genero = genero;
     }

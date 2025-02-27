@@ -1,30 +1,30 @@
 package br.ufbp.dcx.mendonca.mateus.lojaDeJogos;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
+import java.util.*;
 
 public class SistemaLojaJogos implements LojaJogos {
 
-    private Collection<Jogo> jogos;
+    private GravadorDeJogos gravadorDeJogos;
+    private Map<String, Jogo> jogosMap;
 
     public SistemaLojaJogos() {
-        jogos = new ArrayList<Jogo>();
+        this.jogosMap = new HashMap<>();
+        this.gravadorDeJogos = new GravadorDeJogos();
     }
 
     public void cadastraJogo(String titulo, String descricao, String codigo, Genero genero, int preco, int quantidade) throws JogoJaExisteException {
-        if (jogos.contains(codigo)) {
+        if (this.jogosMap.containsKey(codigo)) {
             throw new JogoJaExisteException("Jogo já cadastrado.");
         } else {
             Jogo jogo = new Jogo(titulo, descricao, codigo, genero, preco, quantidade);
-            jogos.add(jogo);
+            this.jogosMap.put(codigo, jogo);
         }
     }
 
     public Collection<Jogo> pesquisaJogoPelaDescricao(String descricao) throws JogoInexistenteException{
         Collection<Jogo> jogoPelaDescricao = new ArrayList();
-        for (Jogo j : jogos) {
+        for (Jogo j : jogosMap.values()) {
             if (j.getDescricao().equals(descricao)) {
                 jogoPelaDescricao.add(j);
             } else {
@@ -36,7 +36,7 @@ public class SistemaLojaJogos implements LojaJogos {
 
     public Collection<Jogo> pesquisaJogosPeloGenero(Genero genero) throws JogoInexistenteException{
         Collection<Jogo> jogoPeloGenero = new ArrayList<>();
-        for (Jogo j : jogos) {
+        for (Jogo j : jogosMap.values()) {
             if (j.getGenero().equals(genero)) {
                 jogoPeloGenero.add(j);
             } else {
@@ -48,9 +48,9 @@ public class SistemaLojaJogos implements LojaJogos {
 
     public void removeJogo(String codigo) throws JogoInexistenteException {
         Collection<Jogo> jogoEncontrado = new ArrayList();
-        for (Jogo j : jogos) {
+        for (Jogo j : jogosMap.values()) {
             if (j.getTitulo().equals(codigo)) {
-                jogoEncontrado.remove(jogos);
+                jogoEncontrado.remove(jogosMap);
             } else {
                 throw new JogoInexistenteException("Jogo não encontrado.");
             }
@@ -82,4 +82,6 @@ public class SistemaLojaJogos implements LojaJogos {
     public int consultaQuantidadeEmEstoque(String codigo) throws JogoInexistenteException {
         return 0;
     }
+
+    public
 }
