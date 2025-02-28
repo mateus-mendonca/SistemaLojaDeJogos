@@ -58,11 +58,11 @@ public class SistemaLojaJogos implements LojaJogos {
     }
 
     public Genero consultaGeneroDoJogo(String codigo) throws JogoInexistenteException{
-        if (!this.jogos.contains(codigo)) {
+        if (!this.jogosMap.containsKey(codigo)) {
             throw new JogoInexistenteException("Jogo não encontrado.");
         } else {
             Genero generoEncontrado = null;
-            for (Jogo j : this.jogos) {
+            for (Jogo j : this.jogosMap.values()) {
                 generoEncontrado = j.getGenero();
             }
             return generoEncontrado;
@@ -70,18 +70,34 @@ public class SistemaLojaJogos implements LojaJogos {
     }
 
     public void alteraPrecoDoJogo(String codigo, int novoPreco) throws JogoInexistenteException {
-        if (!this.jogos.contains(codigo)) {
+        if (!this.jogosMap.containsKey(codigo)) {
             throw new JogoInexistenteException("Jogo não encontrado.");
         } else {
-            for (Jogo j : this.jogos) {
+            for (Jogo j : this.jogosMap.values()) {
                 j.setPreco(novoPreco);
             }
         }
     }
 
     public int consultaQuantidadeEmEstoque(String codigo) throws JogoInexistenteException {
-        return 0;
+        if (!this.jogosMap.containsKey(codigo)) {
+            throw new JogoInexistenteException("Jogo não encontrado.");
+        } else {
+            for (Jogo j : this.jogosMap.values()) {
+                j.getQuantidade();
+            }
+            return jogosMap.size();
+        }
     }
 
-    public
+    public void recuperaRoupas () throws IOException, JogoJaExisteException {
+        Collection<Jogo> jogosAchados = this.gravadorDeJogos.recuperarJogos();
+        for (Jogo j: jogosAchados) {
+            this.cadastraJogo(j.getTitulo(), j.getDescricao(), j.getCodigo(), j.getGenero(), j.getPreco(), j.getQuantidade());
+        }
+    }
+
+    public void salvarRoupas () throws IOException {
+        this.gravadorDeJogos.gravaJogos(this.jogosMap.values());
+    }
 }

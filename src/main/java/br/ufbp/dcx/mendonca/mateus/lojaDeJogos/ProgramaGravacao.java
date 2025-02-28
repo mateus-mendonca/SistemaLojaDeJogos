@@ -16,18 +16,15 @@ public class ProgramaGravacao {
         Jogo j2 = new Jogo("TLOU", "The Last of Us é um jogo eletrônico de ação-aventura " +
                 "e sobrevivência desenvolvido pela Naughty Dog" +
                 " e publicado pela Sony Computer Entertainment.", "002", ACAO_AVENTURA, 120, 999);
-
+        Jogo j3 = new Jogo("GTA V", "Grand Theft Auto V é um jogo eletrônico de ação-aventura " +
+                "desenvolvido pela Rockstar North e publicado pela Rockstar Games", "003", ACAO_AVENTURA,
+                100, 999);
         List<Jogo> jogos = new ArrayList<>();
         jogos.add(j1);
         jogos.add(j2);
+        jogos.add(j3);
 
         GravadorDeJogos gravadorDeJogos = new GravadorDeJogos();
-        try {
-            gravadorDeJogos.gravaJogos(jogos);
-            System.out.println("Jogos salvos com sucesso. ");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
 
         System.out.println("Recuperando jogos...");
         try {
@@ -40,7 +37,12 @@ public class ProgramaGravacao {
             e.getStackTrace();
         }
 
-
+        try {
+            gravadorDeJogos.gravaJogos(jogos);
+            System.out.println("Jogos salvos com sucesso. ");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
     }
 }
