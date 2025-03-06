@@ -17,9 +17,9 @@ public class TestaJanelaDaLoja {
 //        };
 //       janela.addWindowListener(fechadorDaJanelaPrincipal);
 //    }
-    public static void main(String[] args) {
-        JFrame janela = new JogoGUIV2();
-        janela.setVisible(true);
-        janela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    }
+//    public static void main(String[] args) {
+//        JFrame janela = new JogoGUIV2();
+//        janela.setVisible(true);
+//        janela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//    }
 }
