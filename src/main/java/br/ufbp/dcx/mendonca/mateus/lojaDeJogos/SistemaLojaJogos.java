@@ -34,7 +34,7 @@ public class SistemaLojaJogos implements LojaJogos {
         return jogoPelaDescricao;
     }
 
-    public Collection<Jogo> pesquisaJogosPeloGenero(Genero genero) throws JogoInexistenteException{
+    public Collection<Jogo> pesquisaJogosPeloGenero(Genero genero) throws JogoInexistenteException {
         Collection<Jogo> jogoPeloGenero = new ArrayList<>();
         for (Jogo j : jogosMap.values()) {
             if (j.getGenero().equals(genero)) {
@@ -49,7 +49,7 @@ public class SistemaLojaJogos implements LojaJogos {
     public void removeJogo(String codigo) throws JogoInexistenteException {
         Collection<Jogo> jogoEncontrado = new ArrayList();
         for (Jogo j : jogosMap.values()) {
-            if (j.getTitulo().equals(codigo)) {
+            if (j.getCodigo().equals(codigo)) {
                 jogoEncontrado.remove(jogosMap);
             } else {
                 throw new JogoInexistenteException("Jogo não encontrado.");

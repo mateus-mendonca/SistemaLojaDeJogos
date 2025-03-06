@@ -2,6 +2,7 @@ package br.ufbp.dcx.mendonca.mateus.lojaDeJogos;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
@@ -24,25 +25,48 @@ public class ProgramaGravacao {
         jogos.add(j2);
         jogos.add(j3);
 
-        GravadorDeJogos gravadorDeJogos = new GravadorDeJogos();
+        SistemaLojaJogos sistema = new SistemaLojaJogos();
 
-        System.out.println("Recuperando jogos...");
         try {
-            Collection<Jogo> jogosAchados = gravadorDeJogos.recuperarJogos();
-            System.out.println("Jogos achados:");
-            for (Jogo j: jogosAchados) {
-                System.out.println(j.toString());
-            }
-        } catch (IOException e) {
-            e.getStackTrace();
+            sistema.cadastraJogo("GOW", "God of War é um jogo eletrônico de ação-aventura e hack and slash desenvolvido pela Santa Monica Studio e publicado pela Sony Computer Entertainment (SCE).",
+                    "004", ACAO_AVENTURA, 70, 999);
+            System.out.println("Jogo cadastrado com sucesso!");
+        } catch (JogoJaExisteException e) {
+            System.out.println(e.getMessage());
         }
 
         try {
-            gravadorDeJogos.gravaJogos(jogos);
-            System.out.println("Jogos salvos com sucesso. ");
-        } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println("Jogos encontrados: " + sistema.pesquisaJogosPeloGenero(ACAO_AVENTURA));
+        } catch (JogoInexistenteException e) {
+            System.out.println(e.getMessage());
         }
+
+        try {
+            sistema.removeJogo("004");
+            System.out.println("Jogo removido com sucesso!");
+        } catch (JogoInexistenteException e) {
+            System.out.println(e.getMessage());
+        }
+
+//        GravadorDeJogos gravadorDeJogos = new GravadorDeJogos();
+//
+//        System.out.println("Recuperando jogos...");
+//        try {
+//            Collection<Jogo> jogosAchados = gravadorDeJogos.recuperarJogos();
+//            System.out.println("Jogos achados:");
+//            for (Jogo j: jogosAchados) {
+//                System.out.println(j.toString());
+//            }
+//        } catch (IOException e) {
+//            e.getStackTrace();
+//        }
+//
+//        try {
+//            gravadorDeJogos.gravaJogos(jogos);
+//            System.out.println("Jogos salvos com sucesso. ");
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
 
     }
 }
