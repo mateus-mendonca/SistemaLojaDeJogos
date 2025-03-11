@@ -2,7 +2,7 @@ package br.ufbp.dcx.mendonca.mateus.lojaDeJogos.gui.controllers;
 
 import br.ufbp.dcx.mendonca.mateus.lojaDeJogos.Genero;
 import br.ufbp.dcx.mendonca.mateus.lojaDeJogos.JogoJaExisteException;
-import br.ufbp.dcx.mendonca.mateus.lojaDeJogos.SistemaLojaJogos;
+import br.ufbp.dcx.mendonca.mateus.lojaDeJogos.LojaJogos;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -10,10 +10,10 @@ import javax.swing.*;
 
 public class CadastrarJogoController implements ActionListener {
 
-    private SistemaLojaJogos sistema;
+    private LojaJogos sistema;
     private JFrame janelaPrincipal;
 
-    public CadastrarJogoController(SistemaLojaJogos sistema, JFrame janelaPrincipal) {
+    public CadastrarJogoController(LojaJogos sistema, JFrame janelaPrincipal) {
         this.sistema = sistema;
         this.janelaPrincipal = janelaPrincipal;
     }

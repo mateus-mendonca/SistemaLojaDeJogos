@@ -1,6 +1,6 @@
 package br.ufbp.dcx.mendonca.mateus.lojaDeJogos.gui;
 
-import br.ufbp.dcx.mendonca.mateus.lojaDeJogos.Jogo;
+import br.ufbp.dcx.mendonca.mateus.lojaDeJogos.LojaJogos;
 import br.ufbp.dcx.mendonca.mateus.lojaDeJogos.gui.controllers.CadastrarJogoController;
 
 import javax.swing.*;
@@ -13,7 +13,7 @@ public class MenuSistemaLojaJogosV2 extends JFrame {
     ImageIcon pesqJogo = new ImageIcon("imgs/icons/search-icon.png");
     ImageIcon removeJogo = new ImageIcon("imgs/icons/remove-icon.png");
     JButton botaoAdicionar, botaoPesquisar, botaoRemover;
-    Jogo jogo = new Jogo;
+    LojaJogos lojaJogos = new LojaJogos;
 
     public MenuSistemaLojaJogosV2() {
         setTitle("Sistema Lojas de Jogos");
@@ -26,8 +26,8 @@ public class MenuSistemaLojaJogosV2 extends JFrame {
         linha1.setFont(new Font("Tahoma", Font.BOLD, 24));
         linha2 = new JLabel(lojaImg, JLabel.CENTER);
         botaoAdicionar = new JButton("Adicionar", addJogo);
-        botaoAdicionar.addActionListener(new JogoAddController(jogo, this));
+        botaoAdicionar.addActionListener(new CadastrarJogoController(lojaJogos, this));
         botaoPesquisar = new JButton("Pesquisar", pesqJogo);
-        botaoPesquisar.addActionListener(new ());
+        botaoRemover = new JButton("Remover", removeJogo);
     }
 }
