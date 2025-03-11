@@ -48,25 +48,25 @@ public class ProgramaGravacao {
             System.out.println(e.getMessage());
         }
 
-//        GravadorDeJogos gravadorDeJogos = new GravadorDeJogos();
-//
-//        System.out.println("Recuperando jogos...");
-//        try {
-//            Collection<Jogo> jogosAchados = gravadorDeJogos.recuperarJogos();
-//            System.out.println("Jogos achados:");
-//            for (Jogo j: jogosAchados) {
-//                System.out.println(j.toString());
-//            }
-//        } catch (IOException e) {
-//            e.getStackTrace();
-//        }
-//
-//        try {
-//            gravadorDeJogos.gravaJogos(jogos);
-//            System.out.println("Jogos salvos com sucesso. ");
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
+        GravadorDeJogos gravadorDeJogos = new GravadorDeJogos();
+
+        System.out.println("Recuperando jogos...");
+        try {
+            Collection<Jogo> jogosAchados = gravadorDeJogos.recuperarJogos();
+            System.out.println("Jogos achados:");
+            for (Jogo j: jogosAchados) {
+                System.out.println(j.toString());
+            }
+        } catch (IOException e) {
+            e.getStackTrace();
+        }
+
+        try {
+            gravadorDeJogos.gravaJogos(jogos);
+            System.out.println("Jogos salvos com sucesso. ");
+        } catch (IOException e) {
+           e.printStackTrace();
+        }
 
     }
 }
