@@ -22,16 +22,12 @@ public class SistemaLojaJogos implements LojaJogos {
         }
     }
 
-    public Collection<Jogo> pesquisaJogoPelaDescricao(String descricao) throws JogoInexistenteException{
-        Collection<Jogo> jogoPelaDescricao = new ArrayList();
-        for (Jogo j : jogosMap.values()) {
-            if (j.getDescricao().equals(descricao)) {
-                jogoPelaDescricao.add(j);
-            } else {
-                throw new JogoInexistenteException("Nenhum jogo encontrado com essa descrição.");
-            }
+    public Jogo pesquisaJogo(String codigo) throws JogoInexistenteException{
+        if (this.jogosMap.containsKey(codigo)) {
+            return this.jogosMap.get(codigo);
+        } else {
+            throw new JogoInexistenteException("Nenhum jogo encontrado com esse códgio.");
         }
-        return jogoPelaDescricao;
     }
 
     public Collection<Jogo> pesquisaJogosPeloGenero(Genero genero) throws JogoInexistenteException {
