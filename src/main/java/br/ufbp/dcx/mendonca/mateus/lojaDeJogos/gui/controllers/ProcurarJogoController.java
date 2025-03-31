@@ -23,7 +23,7 @@ public class ProcurarJogoController implements ActionListener {
         boolean continuar = true;
         while (continuar) {
             String opcao = JOptionPane.showInputDialog(janelaPrincipal, "Digite a opção desejada: \n" + "1 - Procurar por código. \n"
-                    + "2 - Procurar por gênero. \n");
+                    + "2 - Procurar por gênero. \n" + "3 - Sair. \n");
             switch (opcao) {
                 case "1":
                     String codigo = JOptionPane.showInputDialog(janelaPrincipal, "Digite o codigo do jogo: ");
@@ -42,6 +42,9 @@ public class ProcurarJogoController implements ActionListener {
                         JOptionPane.showMessageDialog(janelaPrincipal, "Jogo inexistente!" + e.getMessage());
                     }
                     break;
+                case "3":
+                    continuar = false;
+
             }
         }
     }

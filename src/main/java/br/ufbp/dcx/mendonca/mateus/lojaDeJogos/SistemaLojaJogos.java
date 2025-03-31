@@ -2,6 +2,7 @@ package br.ufbp.dcx.mendonca.mateus.lojaDeJogos;
 
 import java.io.*;
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class SistemaLojaJogos implements LojaJogos {
 
@@ -22,16 +23,27 @@ public class SistemaLojaJogos implements LojaJogos {
         }
     }
 
-    public Jogo pesquisaJogo(String codigo) throws JogoInexistenteException{
-        if (this.jogosMap.containsKey(codigo)) {
+    public Jogo pesquisaJogo(String codigo) throws JogoInexistenteException {
+        if (!this.jogosMap.containsKey(codigo)) {
+            throw new JogoInexistenteException("Nenhum jogo encontrado com esse códgio.");
+        }
+        return this.jogosMap.values().stream().filter(
+                j -> j.getCodigo().equals(codigo)).findFirst().orElse(null);
+        /*if (this.jogosMap.containsKey(codigo)) {
             return this.jogosMap.get(codigo);
         } else {
             throw new JogoInexistenteException("Nenhum jogo encontrado com esse códgio.");
-        }
+        }*/
     }
 
     public Collection<Jogo> pesquisaJogosPeloGenero(Genero genero) throws JogoInexistenteException {
-        Collection<Jogo> jogoPeloGenero = new ArrayList<>();
+        if(!this.jogosMap.containsKey(genero.toString())) {
+            throw new JogoInexistenteException("Nenhum jogo encontrado com o gênero: "+genero+".");
+        }
+        return this.jogosMap.values().stream().filter(
+                jogo -> jogo.getGenero() == (genero)).toList();
+
+        /*Collection<Jogo> jogoPeloGenero = new ArrayList<>();
         for (Jogo j : jogosMap.values()) {
             if (j.getGenero().equals(genero)) {
                 jogoPeloGenero.add(j);
@@ -39,7 +51,7 @@ public class SistemaLojaJogos implements LojaJogos {
                 throw new JogoInexistenteException("Nenhum jogo encontrado com o gênero: "+genero+".");
             }
         }
-        return jogoPeloGenero;
+        return jogoPeloGenero;*/
     }
 
     public void removeJogo(String codigo) throws JogoInexistenteException {

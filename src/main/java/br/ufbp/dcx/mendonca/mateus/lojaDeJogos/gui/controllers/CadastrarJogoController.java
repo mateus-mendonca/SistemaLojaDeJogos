@@ -21,15 +21,15 @@ public class CadastrarJogoController implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent event) {
+    try {
         String titulo = JOptionPane.showInputDialog(janelaPrincipal, "Digite o título do jogo ");
         String descricao = JOptionPane.showInputDialog(janelaPrincipal, "Digite a descrição do jogo ");
         String codigo = JOptionPane.showInputDialog(janelaPrincipal, "Digite o código do jogo ");
-        Genero genero = Genero.valueOf(JOptionPane.showInputDialog(janelaPrincipal, "Digite o gênero do jogo "));
+        Genero genero = Genero.valueOf(JOptionPane.showInputDialog(janelaPrincipal, "Digite o gênero do jogo (ACAO_AVENTURA, ACAO, AVENTURA, MISTERIO, TERROR, SUSPENSE, TIRO)"));
         int preco = Integer.parseInt(JOptionPane.showInputDialog(janelaPrincipal, "Digite o preço do jogo "));
         int quantidade = Integer.parseInt(JOptionPane.showInputDialog(janelaPrincipal, "Digite a quantidade em estoque do jogo "));
-        try {
-            sistema.cadastraJogo(titulo, descricao, codigo, genero, preco, quantidade);
-            JOptionPane.showMessageDialog(janelaPrincipal, "Jogo cadastrado com sucesso!");
+        sistema.cadastraJogo(titulo, descricao, codigo, genero, preco, quantidade);
+        JOptionPane.showMessageDialog(janelaPrincipal, "Jogo cadastrado com sucesso!");
         } catch (JogoJaExisteException e) {
             JOptionPane.showMessageDialog(janelaPrincipal, "Erro ao cadastrar o jogo: " + e.getMessage());
             e.printStackTrace();
